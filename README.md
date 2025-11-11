@@ -27,20 +27,6 @@ Durante o processo, o script gera um **log unificado** com todas as operações 
 
 * Sistema operacional Windows (por usar `shell()` e caminhos de fonte padrão)
 
----
-
-## Estrutura de Pastas
-
-```
-D:/
- └── FLMs/
-     ├── entrada/
-     │    ├── Pasta1/
-     │    │    ├── video1.flm
-     │    │    └── video2.flm
-     │    └── Pasta2/
-     │         └── videoX.flm
-     └── saida/
 ```
 
 O script buscará os arquivos `.flm` dentro de `PASTA_ENTRADA` (e suas subpastas), gerará arquivos `.avi` temporários e criará, na pasta `PASTA_SAIDA`, um `.avi` final por subpasta processada.
@@ -86,31 +72,6 @@ O arquivo de log (`processamento_completo.log`) contém:
 * Logs informativos e de progresso
 * Detalhes de cada vídeo processado, com formato:
 
-```
-[YYYY-MM-DD HH:MM:SS] | Pasta | Arquivo | FPS | Duração | Resolução | Bitrate | Tamanho_In | Formato_Out | Tempo_Process | Tamanho_Out | Status | Erro
-```
-
-Exemplo:
-
-```
-2025-11-11 10:12:32 | Pasta1 | video1.flm | 25.00 | 12.3s | 1920x1080 | 4500kbps | 35.6MB | AVI(temp) | 4.2s | 38.1MB | OK
-```
-
----
-
-## Principais Funções
-
-| Função                       | Descrição                                      |
-| ---------------------------- | ---------------------------------------------- |
-| `gerar_id_execucao()`        | Gera um identificador único para cada execução |
-| `log_mensagem()`             | Registra mensagens formatadas no console e log |
-| `get_metadata()`             | Extrai metadados de vídeo via FFprobe          |
-| `converter_e_anotar_video()` | Converte `.flm` em `.avi` e adiciona legenda   |
-| `processar_pasta()`          | Processa uma pasta específica                  |
-| `processar_todas()`          | Percorre todas as subpastas e processa em lote |
-
----
-
 ## ⚠️ Observações
 
 * O script assume que cada subpasta contém arquivos `.flm` do mesmo tipo (FPS e resolução semelhantes).
@@ -122,26 +83,3 @@ Exemplo:
 
 Após a execução, cada subpasta processada resultará em um arquivo `.avi` na pasta de saída:
 
-```
-D:/FLMs/saida/
- ├── Pasta1.avi
- ├── Pasta2.avi
- └── processamento_completo.log
-```
-
----
-
-## Exemplo de Execução (trecho do log)
-
-```
-=== ===============================
-=== EXECUÇÃO: 2025-11-11_103522_4728
-=== DATA: 2025-11-11 10:35:22
-=== ===============================
-
-[2025-11-11 10:35:23] ℹ️ Iniciando processamento em D:/FLMs/entrada
-[2025-11-11 10:35:23] ℹ️ Log completo salvo em: D:/FLMs/saida/processamento_completo.log
-[2025-11-11 10:35:24] 🎞️ Pasta1 [:bar] 100% 00:00 (10/10)
-[2025-11-11 10:35:26] ✅ Arquivo final salvo: Pasta1.avi (135.4 MB)
-[2025-11-11 10:35:26] ✅ Processamento concluído.
-```
