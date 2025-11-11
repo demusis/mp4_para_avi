@@ -23,7 +23,7 @@ Durante o processo, o script gera um **log unificado** com todas as operações 
 - Pacotes R necessários:
   ```r
   install.packages("progress", repos = "https://cloud.r-project.org")
-````
+```
 
 * Sistema operacional Windows (por usar `shell()` e caminhos de fonte padrão)
 
